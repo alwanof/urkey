@@ -19,7 +19,7 @@ const dbAuth=firebase.auth();
 window.Vue = require('vue');
 Vue.use(require('vue-moment'));
 import translations from '../lang/vue-translations.json'
-//php artisan lang:js resources/lang/vue-translations.json --json
+//git
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
