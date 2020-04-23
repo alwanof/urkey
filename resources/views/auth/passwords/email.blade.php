@@ -45,7 +45,7 @@
       <div class="card-body login-card-body">
         <div class="login-logo">
           <a href="{{ url('/') }}">
-            <img src="{{ asset('assets/dist/img/logo.png') }}" alt="">
+            <img class="rounded-circle" src="{{ asset('assets/dist/img/logoD.png') }}" alt="">
           </a>
         </div>
         <p class="login-box-msg">{{ __('Reset Password') }}</p>

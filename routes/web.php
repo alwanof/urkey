@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('lang/{locale}', 'HomeController@lang')->name('lang');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/users', 'UserController@index')->name('users')->middleware('permission:access-users');
     Route::get('/roles', 'UserController@roles')->name('roles')->middleware('permission:access-roles');
     Route::get('/permissions', 'UserController@permissions')->name('permissions')->middleware('permission:access-permissions');
@@ -34,5 +34,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/me', 'UserController@me')->name('me');
     Route::get('/config', 'ConfigController@config')->name('config.index')->middleware('permission:access-configs');
     Route::get('/settings', 'ConfigController@settings')->name('config.settings');
+
+    Route::resource('/firms', 'FirmController');
+    Route::get('/orders', 'OrdersController@index')->name('orders.index');
 });
 

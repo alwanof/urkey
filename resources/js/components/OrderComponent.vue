@@ -1,11 +1,12 @@
 <template>
+
     <div >
         <div class="row">
             <div class="'card card-primary card-outline col-lg-12">
                 <div class="card-header">
-                    <a v-show="this.acl.agent_create_draft_order" :href="path+'/admin/order/create/'" class="btn btn-success">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addFeed">
                         <i class="fas fa-plus"></i>
-                    </a>
+                    </button>
                     <i class="fas fa-cog fa-spin px-2 text-primary" v-show="loading"></i>
 
                     <div class="card-tools">
@@ -29,44 +30,31 @@
                 <div class="card-body p-0 table-responsive">
                     <table class="table table-striped table-hover table-head-fixed">
                         <thead>
-                            <tr>
-                                <th>{{local[lang+'.orders']['id']}}</th>
-                                <th>{{local[lang+'.orders']['client']}}</th>
-                                <th>{{local[lang+'.orders']['title']}}</th>
-                                <th>{{local[lang+'.orders']['desc']}}</th>
-                                <th>{{local[lang+'.orders']['total']}}</th>
-                                <th>{{local[lang+'.orders']['created_at']}}</th>
-                                <th>{{local[lang+'.orders']['actions']}}</th>
-                            </tr>
+                        <tr>
+                            <th>{{ local[lang+".orders"]["order_no"] }}</th>
+                            <th>{{ local[lang+".orders"]["otimestamp"] }}</th>
+                            <th> {{ local[lang+".orders"]["agent"] }}</th>
+                            <th> {{ local[lang+".orders"]["firm"] }}</th>
+                            <th> {{ local[lang+".orders"]["driver"] }}</th>
+                            <th>
+                                <span class="badge badge-info">{{total}}</span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(order,index) in orders.data" :key="order.id">
-                                <td>{{ order.id }}</td>
-                                <td>{{order.user.name}}</td>
-                                <td>
-                                    <a :href="path+'/admin/order/details/'+order.id">{{ order.title }}</a>
-                                </td>
-                                <td><a :title="order.desc">{{order.desc.substr(0,25)}}</a></td>
-                                <td>
-                                    <b>$({{order.summary}}.00)</b><sup v-show="order.summary<order.total"><del>{{order.total}}.00</del></sup>
-                                </td>
-                                <td>{{order.created_at}}</td>
-                                <td>
-                                    <a v-show="acl.agent_edit_draft_order" :href="path+'/admin/order/update/'+order.id"
-                                        class="btn btn-sm btn-info text-white"
-                                    >
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <button v-show="acl.agent_delete_draft_order" type="button" class="btn btn-sm btn-danger" @click="removeProduct(order)">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                        <tr v-for="(order, index) in orders" :key="orders.id" :class="(order.driver.name)?'table-warning':''">
+                            <td>{{order.id}}</td>
+                            <td>{{new Date(order.timestamp.seconds*1000) | moment("from", "now")}}</td>
+                            <td><img :src="order.agent.avatarURL" class="rounded-circle" width="42px" alt=""> {{order.agent.name}}</td>
+                            <td><img :src="order.firm.avatarURL" class="rounded-circle" width="42px" alt=""> {{order.firm.name}}</td>
+                            <td ><img :src="order.driver.avatarURL" class="rounded-circle" width="42px" alt=""> {{order.driver.name}}</td>
+                            <td></td>
+                        </tr>
                         </tbody>
                     </table>
                     <hr/>
                     <div class="p-2">
-                        <pagination :data="Object.assign({},orders)" @pagination-change-page="getResults"></pagination>
+
                     </div>
                 </div>
             </div>
@@ -78,28 +66,16 @@
     import CONFIG from "../app";
 
     export default {
-        name: "OrderComponent.vue",
+        name: "orders",
         props: ["auth", "lang", "roles","acl"],
         data() {
             return {
                 path: CONFIG.PATH,
                 loading: false,
                 orders: [],
+                total:0,
                 local: CONFIG.LANG,
-                index: null,
-                UID: null,
-                order: {
-                    id: null,
-                    user_id: null,
-                    title: null,
-                    desc: null,
-                    note:null,
-                    discount:null,
-                    status:null,
-                    status_note:null,
-                    created_at:null,
-                    updated_at:null,
-                },
+
                 keywords: null,
                 errors: []
             };
@@ -108,85 +84,45 @@
             this.getResults();
         },
         watch: {
-            keywords(after, before) {
-                if (this.keywords.length > 2 || this.keywords.length === 0) {
-                    this.search();
-                }
-            }
+
         },
         methods: {
-            getResults(page = 1) {
+            getResults() {
                 this.loading = true;
-                if (typeof page === "undefined") {
-                    page = 1;
-                }
-                axios
-                    .get(
-                        CONFIG.API_URL +
-                        "orders?page=" +
-                        page +
-                        "&api_token=" +
-                        this.auth.api_token
-                    )
-                    .then(res => {
-                        this.orders = res.data;
-                        this.loading = false;
-                    });
-            },
-            search(page) {
-                this.loading = true;
-                if (typeof page === "undefined") {
-                    page = 1;
-                }
-                axios
-                    .get(
-                        CONFIG.API_URL +
-                        "search/orders/draft?page=" +
-                        page +
-                        "&keywords=" +
-                        this.keywords +
-                        "&api_token=" +
-                        this.auth.api_token
-                    )
-                    .then(res => {
-                        this.orders = res.data;
-                        this.loading = false;
-                    });
-            },
-            removeProduct(order) {
-                var conf = confirm(this.local[this.lang + ".alerts"]["confirm-delete"]);
-                if (conf) {
-                    this.loading = false;
-                    axios
-                        .delete(
-                            CONFIG.API_URL +
-                            "orders/" +
-                            order.id +
-                            "?api_token=" +
-                            this.auth.api_token
-                        )
-                        .then(res => {
-                            this.loading = false;
-                            toastr["success"](
-                                this.local[this.lang + ".alerts"]["removed"],
-                                this.local[this.lang + ".alerts"]["ok"]
-                            );
-                            this.getResults(1);
-                        })
-                        .catch(error => {
-                            this.loading = false;
-                            if (error.response.status === 422) {
-                                this.errors = error.response.data.errors || {};
-                            } else {
-                                toastr["error"](
-                                    this.local[this.lang + ".alerts"]["error"],
-                                    this.local[this.lang + ".alerts"]["err"]
-                                );
+                const query=CONFIG.DB.collection('orders');
+                query.onSnapshot(snap=>{
+                    this.total=snap.size;
+                    snap.forEach(doc=>{
+                        let item={};
+                        item.id=doc.data().id;
+                        item.timestamp=doc.data().timestamp;
+                        item.agent=doc.data().agent;
+                        item.firm=doc.data().firm;
+                        item.driver={};
+                        CONFIG.DB.collection('users').doc(doc.data().driverID).get()
+                        .then(doc=>{
+                            if (doc.exists) {
+                                item.driver=doc.data();
                             }
+
                         });
-                }
+
+                        let isExist = this.orders.find(o => o.id === doc.data().id);
+                        if(!isExist){
+                            this.orders.push(item);
+                        }else{
+                            const index=this.orders.indexOf(isExist);
+                            this.orders.splice(index, 1);
+                            this.orders.push(item);
+                        }
+
+                        this.loading = false;
+                    });
+                });
+
 
             },
+
         }
     };
 </script>

@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{__('front.title')}} | {{ __('Login') }}</title>
-    <link rel="shortcut icon" href="{{asset('theme/img/logo.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('assets/dist/img/logoD.png')}}" type="image/x-icon">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
@@ -48,7 +48,7 @@
       <div class="card-body login-card-body">
         <div class="login-logo">
           <a href="{{ url('/') }}">
-            <img src="{{ asset('theme/img/logo.png') }}" alt="">
+            <img class="rounded-circle" src="{{ asset('assets/dist/img/logoD.png') }}" alt="">
           </a>
         </div>
         <p class="login-box-msg">{{ __('Login') }}</p>

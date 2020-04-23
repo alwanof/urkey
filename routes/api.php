@@ -32,6 +32,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('search/configs', 'API\ConfigurationController@search');
     Route::get('search/settings', 'API\SettingController@search');
 
+    Route::apiResource('firms', 'API\FirmController', ['except' => ['create', 'edit', 'show']]);
+    Route::get('search/firms', 'API\FirmController@search');
+
 
 
 });

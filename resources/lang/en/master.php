@@ -9,8 +9,8 @@ return [
     'logout' => 'Logout',
     'goodBye' => 'Good Bye!',
     'select-language' => 'Select Language',
-    'modules'=>'App. Modules',
-    'desktop'=>'Desktop',
-    'drivers'=>'Drivers'
+    'orders_manager'=>'Orders Manager',
+    'orders'=>'Orders',
+
 
 ];

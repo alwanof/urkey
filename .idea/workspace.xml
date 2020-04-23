@@ -125,9 +125,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\urkey" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\meazafood\resources\views" />
       <recent name="C:\xampp\htdocs\meazafood\resources\js\components" />
@@ -184,7 +187,12 @@
       <workItem from="1586683271109" duration="3403000" />
       <workItem from="1586790749187" duration="12000" />
       <workItem from="1587059254268" duration="600000" />
-      <workItem from="1587216970854" duration="1179000" />
+      <workItem from="1587216970854" duration="4795000" />
+      <workItem from="1587285273510" duration="14211000" />
+      <workItem from="1587398552874" duration="1203000" />
+      <workItem from="1587454492108" duration="14629000" />
+      <workItem from="1587574216197" duration="1428000" />
+      <workItem from="1587653652294" duration="31000" />
     </task>
     <servers />
   </component>
@@ -197,17 +205,26 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
+    <state x="1468" y="13" width="1689" height="999" key="#Live_Templates" timestamp="1587488856175">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1468" y="13" width="1689" height="999" key="#Live_Templates/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587488856175" />
     <state x="408" y="0" width="566" height="728" key="#PHP" timestamp="1583773947136">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="408" y="0" width="566" height="728" key="#PHP/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1583773947136" />
+    <state x="1834" y="248" key="#com.intellij.codeInsight.template.impl.EditVariableDialog" timestamp="1587488819675">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1834" y="248" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587488819675" />
     <state x="1922" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582955069375">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="1922" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1582955069375" />
-    <state x="1993" y="238" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1584017297400">
-      <screen x="1366" y="0" width="1920" height="1080" />
+    <state x="1993" y="229" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1587290911742">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
+    <state x="1993" y="229" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587290911742" />
     <state x="1993" y="238" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1584017297400" />
     <state x="344" y="25" width="691" height="677" key="#phpunit.xml" timestamp="1583773948567">
       <screen x="0" y="0" width="1366" height="728" />
@@ -217,27 +234,31 @@
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="2056" y="238" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1583334758228" />
-    <state width="1323" height="19" key="GridCell.Tab.0.bottom" timestamp="1584448335497">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1865" height="248" key="GridCell.Tab.0.bottom" timestamp="1587236332056">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
+    <state width="1865" height="248" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587236332056" />
     <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1583858708525" />
     <state width="1877" height="307" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1584021720553" />
     <state width="1323" height="19" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584448335497" />
-    <state width="1323" height="19" key="GridCell.Tab.0.center" timestamp="1584448335496">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1865" height="248" key="GridCell.Tab.0.center" timestamp="1587236332056">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
+    <state width="1865" height="248" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587236332056" />
     <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1583858708525" />
     <state width="1877" height="307" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1584021720553" />
     <state width="1323" height="19" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1584448335496" />
-    <state width="1323" height="19" key="GridCell.Tab.0.left" timestamp="1584448335496">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1865" height="248" key="GridCell.Tab.0.left" timestamp="1587236332056">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
+    <state width="1865" height="248" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587236332056" />
     <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1583858708525" />
     <state width="1877" height="307" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1584021720553" />
     <state width="1323" height="19" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1584448335496" />
-    <state width="1323" height="19" key="GridCell.Tab.0.right" timestamp="1584448335496">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1865" height="248" key="GridCell.Tab.0.right" timestamp="1587236332056">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
+    <state width="1865" height="248" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587236332056" />
     <state width="1323" height="265" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1583858708525" />
     <state width="1877" height="307" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1584021720553" />
     <state width="1323" height="19" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1584448335496" />
@@ -257,17 +278,17 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="206" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1584286013337" />
-    <state x="2071" y="155" key="SettingsEditor" timestamp="1586519275205">
+    <state x="1513" y="1" key="SettingsEditor" timestamp="1587489368220">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="2071" y="155" key="SettingsEditor/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1586519275205" />
+    <state x="1513" y="1" key="SettingsEditor/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587489368220" />
     <state x="184" y="4" key="SettingsEditor/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1583772031459" />
     <state x="2144" y="203" key="SettingsEditor/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1585223109500" />
     <state x="368" y="13" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1584110690642" />
-    <state x="1931" y="310" key="com.intellij.ide.util.TipDialog" timestamp="1586790750495">
+    <state x="1931" y="310" key="com.intellij.ide.util.TipDialog" timestamp="1587653660973">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="1931" y="310" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1586790750495" />
+    <state x="1931" y="310" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587653660973" />
     <state x="402" y="217" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1584007616506" />
     <state x="1931" y="322" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1585222987295" />
     <state x="402" y="217" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1585035036903" />
@@ -275,10 +296,10 @@
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="2013" y="144" width="626" height="792" key="find.popup/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1584012128499" />
-    <state x="1904" y="43" width="945" height="996" key="search.everywhere.popup" timestamp="1586523524014">
+    <state x="1904" y="43" width="945" height="996" key="search.everywhere.popup" timestamp="1587489354399">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="1904" y="43" width="945" height="996" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1586523524014" />
+    <state x="1904" y="43" width="945" height="996" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587489354399" />
     <state x="383" y="30" width="672" height="697" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1583767045914" />
     <state x="1905" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1584012096751" />
     <state x="383" y="30" width="672" height="697" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1584110768688" />

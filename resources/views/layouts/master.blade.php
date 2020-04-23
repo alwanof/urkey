@@ -156,21 +156,44 @@
 
                     <li class="nav-item has-treeview menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-file-alt"></i>
+                            <i class="fas fa-box"></i>
                             <p>
-                                Page
+                                {{__('master.orders_manager')}}
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link ">
-                                    <i class="fa fa-drafting-compass nav-icon"></i>
-                                    <p>Sup-Page</p>
+                                <a href="{{route('orders.index')}}" class="nav-link ">
+                                    <i class="fas fa-box-open"></i>
+                                    <p>{{__('master.orders')}}</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
+                @can('access_members_area')
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-users-cog"></i>
+                            <p>
+                                {{__('members.title')}}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('access_firms')
+                                <li class="nav-item">
+                                    <a href="{{route('firms.index')}}" class="nav-link ">
+                                        <i class="fas fa-building"></i>
+                                        <p>{{__('members.firms.title')}}</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+
+
 
 
 
