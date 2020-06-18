@@ -146,6 +146,7 @@ export default {
   },
   created() {
     this.getResults();
+
   },
   watch: {
     keywords(after, before) {

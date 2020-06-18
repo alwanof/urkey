@@ -14,9 +14,7 @@
 @section('content')
     <!-- Default box -->
 
-
-
-    <orders :acl="{{json_encode($acl)}}"  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}" ></orders>
+    <orders :acl="{{json_encode($acl)}}" :agent="{{json_encode($agent)}}" :firm="{{json_encode($firm)}}" :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}" ></orders>
 
 @endsection
 

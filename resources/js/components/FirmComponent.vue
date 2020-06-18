@@ -32,30 +32,45 @@
                         <tr>
                             <th>{{ local[lang+".members"]["name"] }}</th>
                             <th>{{ local[lang+".members"]["email"] }}</th>
+                            <th>{{ local[lang+".members"]["phone"] }}</th>
+                            <th>{{ local[lang+".members"]["date"] }}</th>
                             <th>
                                 <span class="badge badge-info">{{firms.total}}</span>
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(firm,index) in firms.data" :key="firm.id">
+                        <tr v-for="(firm,index) in firms.data" :key="firm.id" :class="'table-'+makeColor(firm.status)">
                             <td>
                                 <img :src="firm.avatar+'?r='+Math.random()" class="rounded-circle mx-1" width="24px"/>
                                 {{ firm.name }}
                             </td>
                             <td>{{firm.email}}</td>
+                            <td>{{firm.phone}}</td>
+                            <td>{{firm.created_at | moment("from", "now")}}</td>
                             <td>
-                                <button
-                                    type="button"
-                                    class="btn btn-sm btn-info text-white"
-                                    @click="editFirm(firm)"
-                                >
+                                <span v-show="acl.firms_edit_trash">
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm btn-info text-white"
+                                        @click="editFirm(firm)" v-show="firm.status==0">
                                     <i class="fa fa-edit"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-danger" @click="removeFirm(firm)">
-                                    <i class="fa fa-trash"></i>
-                                </button>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-danger" @click="removeFirm(firm)" v-show="firm.status==0">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
 
+                                </span>
+                                <span v-show="acl.firms_approve">
+                                    <button type="button" class="btn btn-sm btn-success" title="Create a dashboard account" @click="approve(firm,index)" v-show="firm.status==0">
+                                        <i class="fas fa-tachometer-alt" ></i>
+                                    </button>
+                                </span>
+                                <span v-show="acl.firms_activate">
+                                    <button type="button" class="btn btn-sm btn-success" title="Create a mobile app account"  @click="activate(firm,index)" v-show="firm.status==1">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </button>
+                                </span>
                             </td>
                         </tr>
                         </tbody>
@@ -82,11 +97,11 @@
                         <h4
                             class="modal-title w-100 font-weight-bold"
                             v-show="firm.id==null"
-                        >{{ local[lang+".members"]["create-firm"] }}</h4>
+                        >{{ local[lang+".members"]["create-new"] }}</h4>
                         <h4
                             class="modal-title w-100 font-weight-bold"
                             v-show="firm.id!=null"
-                        >{{ local[lang+".members"]["edit-firm"] }}</h4>
+                        >{{ local[lang+".members"]["edit-item"] }}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -96,7 +111,7 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
 						<span class="input-group-text">
-							<i class="fas fa-envelope"></i>
+							<i class="fas fa-user"></i>
 						</span>
                                 </div>
                                 <input
@@ -112,7 +127,7 @@
                             <div class="input-group mt-3">
                                 <div class="input-group-prepend">
 						<span class="input-group-text">
-							<i class="fas fa-user"></i>
+							<i class="fas fa-envelope"></i>
 						</span>
                                 </div>
                                 <input
@@ -124,6 +139,22 @@
                                 />
                             </div>
                             <div v-if="errors && errors.email" class="text-danger">{{ errors.email[0] }}</div>
+
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+						<span class="input-group-text">
+							<i class="fas fa-phone"></i>
+						</span>
+                                </div>
+                                <input
+                                    type="text"
+                                    v-model="firm.phone"
+                                    class="form-control"
+                                    :placeholder="local[lang+'.members']['phone']"
+                                    required
+                                />
+                            </div>
+                            <div v-if="errors && errors.phone" class="text-danger">{{ errors.phone[0] }}</div>
 
                             <div class="input-group mt-3">
                                 <div class="input-group-prepend">
@@ -168,12 +199,12 @@
                 firms: [],
                 local: CONFIG.LANG,
                 index: null,
-                UID: null,
                 firm: {
                     id: null,
                     name: null,
                     email: null,
-                    password: null
+                    password: null,
+                    phone:null,
                 },
                 keywords: null,
                 errors: []
@@ -299,6 +330,7 @@
                 this.firm.id = firm.id;
                 this.firm.name = firm.name;
                 this.firm.email = firm.email;
+                this.firm.phone = firm.phone;
                 $("#addFeed").modal("show");
             },
             removeFirm(firm) {
@@ -335,9 +367,89 @@
                 }
 
             },
+            approve(firm,index){
+                this.loading = true;
+                axios.post(
+                        CONFIG.API_URL + "approve/firm" + "?api_token=" + this.auth.api_token,
+                        firm
+                    )
+                    .then(res => {
+                        this.loading = false;
+                        toastr["success"](
+                            this.local[this.lang + ".alerts"]["added"],
+                            this.local[this.lang + ".alerts"]["ok"]
+                        );
+                        this.firms.data[index].status=1;
+
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.loading = false;
+                        toastr["error"](
+                            this.local[this.lang + ".alerts"]["error"],
+                            this.local[this.lang + ".alerts"]["err"]
+                        );
+                    });
+            },
+            activate(firm,index){
+                axios.post(
+                    CONFIG.API_URL + "activate/firm" + "?api_token=" + this.auth.api_token,
+                    firm
+                ).then(res => {
+                    this.firms.data[index].status=2;
+                });
+                this.loading = true;
+                var today = new Date();
+                const query=CONFIG.DB.collection('users')
+                    .doc(firm.uid)
+                    .set({
+                       avatarURL:firm.avatar,
+                        email:firm.email,
+                        firmID:null,
+                        groupID:"2",
+                        id:firm.uid,
+                        isAvailable:"0",
+                        name:firm.name,
+                        phone:firm.phone,
+                        settings:null,
+                        status:null,
+                        userPosition:null
+                    })
+                .then(()=>{
+                    this.loading = false;
+                    toastr["success"](
+                        this.local[this.lang + ".alerts"]["added"],
+                        this.local[this.lang + ".alerts"]["ok"]
+                    );
+                })
+                .catch((error)=>{
+                    this.loading = false;
+                    toastr["error"](
+                        this.local[this.lang + ".alerts"]["error"],
+                        this.local[this.lang + ".alerts"]["err"]
+                    );
+                });
+
+
+
+            },
 
             clearFields() {
-                this.firm.name = this.firm.email = this.firm.password = null;
+                this.firm.name = this.firm.email= this.firm.phone = this.firm.password = null;
+            },
+            makeColor(status) {
+                let color='danger';
+                switch (status) {
+                    case 1:
+                        color='warning';
+                        break;
+                    case 2:
+                        color='success';
+                        break;
+                    default:
+                        color='danger';
+                }
+                return color;
             }
         }
     };

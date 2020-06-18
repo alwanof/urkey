@@ -35,7 +35,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/config', 'ConfigController@config')->name('config.index')->middleware('permission:access-configs');
     Route::get('/settings', 'ConfigController@settings')->name('config.settings');
 
-    Route::resource('/firms', 'FirmController');
+    Route::get('/firms', 'MemberController@firms')->name('members.firms');
+    Route::get('/agents', 'MemberController@agents')->name('members.agents');
+    Route::get('/drivers', 'MemberController@drivers')->name('members.drivers');
     Route::get('/orders', 'OrdersController@index')->name('orders.index');
+    Route::get('create/orders', 'OrdersController@create')->name('orders.create');
+    Route::get('/tracking/map', 'HomeController@tracking_map')->name('home.tracking.map');
 });
 

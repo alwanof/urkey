@@ -163,12 +163,21 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            @can('access_hotorders')
+                                <li class="nav-item">
+                                    <a href="{{route('orders.create')}}" class="nav-link ">
+                                        <i class="fas fa-sync-alt"></i>
+                                        <p>{{__('orders.new.title')}}</p>
+                                    </a>
+                                </li>
+                            @endcan
                             <li class="nav-item">
                                 <a href="{{route('orders.index')}}" class="nav-link ">
                                     <i class="fas fa-box-open"></i>
                                     <p>{{__('master.orders')}}</p>
                                 </a>
                             </li>
+
                         </ul>
                     </li>
                 @can('access_members_area')
@@ -183,19 +192,42 @@
                         <ul class="nav nav-treeview">
                             @can('access_firms')
                                 <li class="nav-item">
-                                    <a href="{{route('firms.index')}}" class="nav-link ">
+                                    <a href="{{route('members.firms')}}" class="nav-link ">
                                         <i class="fas fa-building"></i>
                                         <p>{{__('members.firms.title')}}</p>
                                     </a>
                                 </li>
                             @endcan
+                            @can('access_agents')
+                                    <li class="nav-item">
+                                        <a href="{{route('members.agents')}}" class="nav-link ">
+                                            <i class="fas fa-user-tag"></i>
+                                            <p>{{__('members.agents.title')}}</p>
+                                        </a>
+                                    </li>
+                                @endcan
+                            @can('access_drivers')
+                                    <li class="nav-item">
+                                        <a href="{{route('members.drivers')}}" class="nav-link ">
+                                            <i class="fas fa-taxi"></i>
+                                            <p>{{__('members.drivers.title')}}</p>
+                                        </a>
+                                    </li>
+                                @endcan
                         </ul>
                     </li>
                 @endcan
-
-
-
-
+                @can('access_tracking_map')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('home.tracking.map')}}" >
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>
+                                {{ __('tracking.title') }}
+                                <span class="right badge badge-warning"><i class="fas fa-car"></i></span>
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
 
                 <hr>
                 <li class="nav-item">
@@ -236,7 +268,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.1
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <strong>Copyright &copy; 2020 <a href="http://marasielapp.com">Marasiel</a>.</strong> All rights
     reserved.
   </footer>
 

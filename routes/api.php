@@ -34,6 +34,19 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::apiResource('firms', 'API\FirmController', ['except' => ['create', 'edit', 'show']]);
     Route::get('search/firms', 'API\FirmController@search');
+    Route::post('approve/firm', 'API\FirmController@approve');
+    Route::post('activate/firm', 'API\FirmController@activate');
+
+    Route::apiResource('agents', 'API\AgentController', ['except' => ['create', 'edit', 'show']]);
+    Route::get('search/agents', 'API\AgentController@search');
+    Route::post('approve/agent', 'API\AgentController@approve');
+    Route::post('activate/agent', 'API\AgentController@activate');
+
+    Route::apiResource('drivers', 'API\DriverController', ['except' => ['create', 'edit', 'show']]);
+    Route::get('search/drivers', 'API\DriverController@search');
+    Route::post('activate/driver', 'API\DriverController@activate');
+
+
 
 
 

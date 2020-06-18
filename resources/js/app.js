@@ -9,17 +9,25 @@
 require('./bootstrap');
 const firebase = require("firebase");
 require("firebase/firestore");
+import * as VueGoogleMaps from 'vue2-google-maps';
 
 firebase.initializeApp({
     apiKey: ' AIzaSyCTVK3-WwlNPFuvN8IZ2mPT5D02qSchMsI',
     projectId: 'urkeydeliveryapp'
 });
 const db = firebase.firestore();
+const firestore = firebase.firestore;
 const dbAuth=firebase.auth();
 window.Vue = require('vue');
+Vue.use(VueGoogleMaps,{
+    load:{
+        key:'AIzaSyCV64F_eRBIVJOdYHKcrO5zUuMjW9QS-1A',
+        libraries: 'places,directions'
+    },
+});
 Vue.use(require('vue-moment'));
 import translations from '../lang/vue-translations.json'
-//git
+//php artisan lang:js resources/lang/vue-translations.json --json
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
@@ -29,7 +37,12 @@ Vue.component('permission-component', require('./components/PermissionComponent.
 Vue.component('config-component', require('./components/ConfigComponent.vue').default);
 Vue.component('settings-component', require('./components/SettingsComponent.vue').default);
 Vue.component('orders', require('./components/OrderComponent.vue').default);
+Vue.component('hotorders', require('./components/HotorderComponent.vue').default);
 Vue.component('firms', require('./components/FirmComponent.vue').default);
+Vue.component('agents', require('./components/AgentComponent.vue').default);
+Vue.component('drivers', require('./components/DriverComponent.vue').default);
+Vue.component('neworder', require('./components/NeworderComponent.vue').default);
+Vue.component('trackingmap', require('./components/TrackingmapComponent.vue').default);
 
 function coolNumber(num){
     if(num <1000){
@@ -48,8 +61,10 @@ const CONFIG = {
     //PATH: '/public',
     API_URL: 'http://'+window.location.hostname+'/urkey/public/api/',
     PATH: '/urkey/public',
+    AppURL:'http://'+window.location.hostname+'/urkey/public/',
     LANG: translations,
     DB:db,
+    FIRESTORE:firestore,
     dbAuth:dbAuth,
     coolNumber:coolNumber
 

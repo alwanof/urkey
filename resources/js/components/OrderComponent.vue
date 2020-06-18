@@ -2,11 +2,9 @@
 
     <div >
         <div class="row">
-            <div class="'card card-primary card-outline col-lg-12">
-                <div class="card-header">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addFeed">
-                        <i class="fas fa-plus"></i>
-                    </button>
+            <div class="'card card-danger card-outline col-lg-12">
+                <div class="card-header h3">
+
                     <i class="fas fa-cog fa-spin px-2 text-primary" v-show="loading"></i>
 
                     <div class="card-tools">
@@ -41,16 +39,36 @@
                             </th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr v-for="(order, index) in orders" :key="orders.id" :class="(order.driver.name)?'table-warning':''">
+                        <tbody v-for="(order, index) in orders" :key="order.id" :class="'table-'+colorOrder(order.status.value)">
+                        <tr >
                             <td>{{order.id}}</td>
                             <td>{{new Date(order.timestamp.seconds*1000) | moment("from", "now")}}</td>
                             <td><img :src="order.agent.avatarURL" class="rounded-circle" width="42px" alt=""> {{order.agent.name}}</td>
                             <td><img :src="order.firm.avatarURL" class="rounded-circle" width="42px" alt=""> {{order.firm.name}}</td>
-                            <td ><img :src="order.driver.avatarURL" class="rounded-circle" width="42px" alt=""> {{order.driver.name}}</td>
+                            <td ><img :src="order.driver.avatarURL" class="rounded-circle" width="42px" alt=""> {{order.driver.name}} <span v-show="order.distance>0" class="badge badge-dark">~{{Math.round(order.distance/1000)}} km.</span></td>
                             <td></td>
                         </tr>
+                        <tr >
+                            <td colspan="6">
+                                <div :class="'my-1 p-1 table-'+colorPacket(packet.status.value)" v-for="(packet, index) in order.packets" :key="packet.id" >
+                                    <div>
+                                        <i class="far fa-user"></i> <span class="mx-1">{{packet.name}}</span>
+                                        <i class="fas fa-phone-volume"></i> <span class="mx-1">{{packet.phone}}</span>
+                                        <i class="far fa-clock"></i> <span class="mx-1">
+                                        {{new Date(packet.status.timestamp.seconds*1000) | moment("from", "now")}}
+                                        <span class="badge badge-secondary">{{local[lang+".orders"]["packet-status"][packet.status.value]}}</span>
+                                        <span class="badge badge-warning">~{{Math.round(packet.distance/1000)}} km.</span>
+                                    </span>
+                                    </div>
+                                    <div>
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>{{packet.destination.address}} / {{packet.destination.district}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
+
                     </table>
                     <hr/>
                     <div class="p-2">
@@ -67,7 +85,7 @@
 
     export default {
         name: "orders",
-        props: ["auth", "lang", "roles","acl"],
+        props: ["auth", "lang", "roles","acl","agent","firm"],
         data() {
             return {
                 path: CONFIG.PATH,
@@ -75,7 +93,6 @@
                 orders: [],
                 total:0,
                 local: CONFIG.LANG,
-
                 keywords: null,
                 errors: []
             };
@@ -87,25 +104,72 @@
 
         },
         methods: {
-            getResults() {
+            async getResults() {
                 this.loading = true;
-                const query=CONFIG.DB.collection('orders');
+                const limit=await CONFIG.DB.collection('settings').doc('order_limit').get();
+
+                let query;
+                //console.log(this.acl.role[0].name);
+                switch(this.acl.role[0].name){
+                    case 'developer':
+                        query=CONFIG.DB.collection('orders').where('status.value','==','2').limit(limit.data().value);
+                        break;
+                    case 'Firms':
+                        query=CONFIG.DB.collection('orders').where('status.value','==','2').where('firm.id','==',this.firm.uid).limit(limit.data().value);
+                        break;
+                    case 'Agents':
+                        query=CONFIG.DB.collection('orders').where('status.value','==','2').where('agent.id','==',this.agent.uid).limit(limit.data().value);
+                        break;
+                }
+
                 query.onSnapshot(snap=>{
                     this.total=snap.size;
+                    if(snap.size==0){
+                        this.loading = false;
+                    }
                     snap.forEach(doc=>{
+
                         let item={};
+                        let packetItems=[];
+                        CONFIG.DB.collection('orders').doc(doc.data().id).collection('packets')
+                            .onSnapshot(packets=>{
+                                packets.forEach(packet=>{
+                                    let isExist = packetItems.find(o => o.id === packet.data().id);
+                                    if(!isExist){
+                                        packetItems.push(packet.data());
+                                    }else{
+                                        const index=packetItems.indexOf(isExist);
+                                        packetItems.splice(index, 1);
+                                        packetItems.push(packet.data());
+                                    }
+
+                                });
+
+                            });
                         item.id=doc.data().id;
                         item.timestamp=doc.data().timestamp;
+                        item.status=doc.data().status;
                         item.agent=doc.data().agent;
                         item.firm=doc.data().firm;
+                        item.distance=doc.data().distance;
                         item.driver={};
+                        item.packets=packetItems;
                         CONFIG.DB.collection('users').doc(doc.data().driverID).get()
-                        .then(doc=>{
+                        .then( doc=>{
                             if (doc.exists) {
                                 item.driver=doc.data();
+
                             }
 
+                        })
+                        .catch((error) => {
+                            this.loading = false;
+                            toastr["error"](
+                                this.local[this.lang + ".alerts"]["error"],
+                                this.local[this.lang + ".alerts"]["err"]
+                            );
                         });
+
 
                         let isExist = this.orders.find(o => o.id === doc.data().id);
                         if(!isExist){
@@ -122,6 +186,44 @@
 
 
             },
+            colorOrder(status){
+                let result='';
+                switch (status) {
+                    case "0":
+                        result="danger";
+                        break;
+                    case "1":
+                        result="warning";
+                        break;
+                    case "2":
+                        result="success";
+                        break;
+                    default:
+                        result="";
+                        break;
+                }
+                return result;
+            },
+
+            colorPacket(status){
+                let result='';
+                switch (status) {
+                    case "0":
+                        result="warning";
+                        break;
+                    case "1":
+                        result="success";
+                        break;
+                    case "2":
+                        result="danger";
+                        break;
+                    default:
+                        result="";
+                        break;
+                }
+                return result;
+            }
+
 
         }
     };

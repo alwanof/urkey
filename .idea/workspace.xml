@@ -123,17 +123,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../smartmenu" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\urkey" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\urkey\resources\js\components" />
+      <recent name="C:\xampp\htdocs\urkey\resources\views\orders" />
+      <recent name="C:\xampp\htdocs\urkey\resources\views\member" />
       <recent name="C:\xampp\htdocs\meazafood\resources\views" />
       <recent name="C:\xampp\htdocs\meazafood\resources\js\components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\urkey" />
     </key>
   </component>
   <component name="RunManager">
@@ -193,6 +196,17 @@
       <workItem from="1587454492108" duration="14629000" />
       <workItem from="1587574216197" duration="1428000" />
       <workItem from="1587653652294" duration="31000" />
+      <workItem from="1587676454343" duration="65061000" />
+      <workItem from="1588160703747" duration="1222000" />
+      <workItem from="1588188661462" duration="8284000" />
+      <workItem from="1588271394134" duration="312000" />
+      <workItem from="1588702391643" duration="15502000" />
+      <workItem from="1588891366296" duration="6274000" />
+      <workItem from="1588949767361" duration="27754000" />
+      <workItem from="1589077359987" duration="2895000" />
+      <workItem from="1589109858391" duration="21210000" />
+      <workItem from="1589294456265" duration="99000" />
+      <workItem from="1589327412751" duration="7652000" />
     </task>
     <servers />
   </component>
@@ -221,18 +235,19 @@
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="1922" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1582955069375" />
-    <state x="1993" y="229" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1587290911742">
+    <state x="1993" y="229" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589110960857">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="1993" y="229" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587290911742" />
+    <state x="1993" y="229" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1589110960857" />
     <state x="1993" y="238" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1584017297400" />
     <state x="344" y="25" width="691" height="677" key="#phpunit.xml" timestamp="1583773948567">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="344" y="25" width="691" height="677" key="#phpunit.xml/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1583773948567" />
-    <state x="2056" y="238" key="FileChooserDialogImpl" timestamp="1583334758228">
-      <screen x="1366" y="0" width="1920" height="1080" />
+    <state x="2056" y="229" key="FileChooserDialogImpl" timestamp="1589374511840">
+      <screen x="1366" y="0" width="1920" height="1040" />
     </state>
+    <state x="2056" y="229" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1589374511840" />
     <state x="2056" y="238" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1583334758228" />
     <state width="1865" height="248" key="GridCell.Tab.0.bottom" timestamp="1587236332056">
       <screen x="1366" y="0" width="1920" height="1040" />
@@ -285,13 +300,18 @@
     <state x="184" y="4" key="SettingsEditor/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1583772031459" />
     <state x="2144" y="203" key="SettingsEditor/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1585223109500" />
     <state x="368" y="13" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1584110690642" />
-    <state x="1931" y="310" key="com.intellij.ide.util.TipDialog" timestamp="1587653660973">
-      <screen x="1366" y="0" width="1920" height="1040" />
+    <state x="402" y="217" key="com.intellij.ide.util.TipDialog" timestamp="1589294535804">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="1931" y="310" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1587653660973" />
+    <state x="402" y="217" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1589294535804" />
+    <state x="1931" y="310" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1589109991811" />
     <state x="402" y="217" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1080@0.0.1366.728" timestamp="1584007616506" />
     <state x="1931" y="322" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1585222987295" />
     <state x="402" y="217" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1585035036903" />
+    <state x="1877" y="44" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1588078989999">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1877" y="44" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1588078989999" />
     <state x="2013" y="144" width="626" height="792" key="find.popup" timestamp="1584012128499">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
