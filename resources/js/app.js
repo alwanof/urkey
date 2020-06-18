@@ -57,11 +57,12 @@ function coolNumber(num){
     }
 }
 const CONFIG = {
-    //API_URL: 'https://'+window.location.hostname+'/public/api/',
-    //PATH: '/public',
-    API_URL: 'http://'+window.location.hostname+'/urkey/public/api/',
-    PATH: '/urkey/public',
-    AppURL:'http://'+window.location.hostname+'/urkey/public/',
+    API_URL: 'https://'+window.location.hostname+'/godelivery/public/api/',
+    PATH: '/godelivery/public',
+    AppURL:'http://'+window.location.hostname+'/godelivery/public/',
+    //API_URL: 'http://'+window.location.hostname+'/urkey/public/api/',
+    //PATH: '/urkey/public',
+    //AppURL:'http://'+window.location.hostname+'/urkey/public/',
     LANG: translations,
     DB:db,
     FIRESTORE:firestore,
