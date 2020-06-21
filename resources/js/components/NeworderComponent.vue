@@ -265,7 +265,6 @@
             async addPacket(){
                 this.loading = true;
                this.packet.id=this.makeid(16);
-               console.log('https://maps.googleapis.com/maps/api/geocode/json?address='+this.packet.destination.district+','+this.packet.destination.address+','+this.packet.destination.city+'&key=AIzaSyCV64F_eRBIVJOdYHKcrO5zUuMjW9QS-1A');
                 await axios.get('https://maps.googleapis.com/maps/api/geocode/json?address='+this.packet.destination.district+','+this.packet.destination.address+','+this.packet.destination.city+'&key=AIzaSyCV64F_eRBIVJOdYHKcrO5zUuMjW9QS-1A')
                     .then(res=>{
                         this.packet.location=new CONFIG.FIRESTORE.GeoPoint(res.data.results[0].geometry.location.lat, res.data.results[0].geometry.location.lng);

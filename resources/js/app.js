@@ -26,6 +26,10 @@ Vue.use(VueGoogleMaps,{
     },
 });
 Vue.use(require('vue-moment'));
+window.axios.defaults.headers.common = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+};
 import translations from '../lang/vue-translations.json'
 //php artisan lang:js resources/lang/vue-translations.json --json
 
@@ -59,7 +63,7 @@ function coolNumber(num){
 const CONFIG = {
     API_URL: 'https://'+window.location.hostname+'/godelivery/public/api/',
     PATH: '/godelivery/public',
-    AppURL:'http://'+window.location.hostname+'/godelivery/public/',
+    AppURL:'https://'+window.location.hostname+'/godelivery/public/',
     //API_URL: 'http://'+window.location.hostname+'/urkey/public/api/',
     //PATH: '/urkey/public',
     //AppURL:'http://'+window.location.hostname+'/urkey/public/',
